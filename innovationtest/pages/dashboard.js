@@ -17,6 +17,9 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
+                // Verifica se está no ambiente do cliente
+                if (typeof window === 'undefined') return;
+
                 const token = localStorage.getItem('token_de_acesso');
                 if (!token) {
                     alert('Token de acesso não encontrado. Redirecionando para a página de login.');
