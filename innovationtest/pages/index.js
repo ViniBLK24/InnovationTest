@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function HomePage() {
     const [formData, setFormData] = useState({
@@ -53,54 +54,59 @@ export default function HomePage() {
     };
 
     return (
-        <div className="container" style={{ 
-            backgroundImage: 'url(/images/bgimage/bg.png)', 
-            backgroundSize: 'cover', 
-            backgroundPosition: 'center', 
-            height: '100vh' 
-        }}>
-            <div className="login-container">
-                <h1>Bem-vindo a Innovation Brindes</h1>
-                <form onSubmit={handleSubmit}>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Usuário:</label>
-                        <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Digite seu usuário"
-                            required
-                        />
-                    </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>Senha:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="Digite sua senha"
-                            required
-                        />
-                    </div>
-                    <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <label>
+        <>
+            <Head>
+                <title>Innovation Brindes - Login</title>
+            </Head>
+            <div className="container" style={{ 
+                backgroundImage: 'url(/images/bgimage/bg.png)', 
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center', 
+                height: '100vh' 
+            }}>
+                <div className="login-container">
+                    <h1>Bem-vindo a Innovation Brindes</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div style={{ marginBottom: '15px' }}>
+                            <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Usuário:</label>
                             <input
-                                type="checkbox"
-                                name="stayConnected"
-                                checked={formData.stayConnected}
+                                type="text"
+                                id="email"
+                                name="email"
+                                value={formData.email}
                                 onChange={handleChange}
+                                placeholder="Digite seu usuário"
+                                required
                             />
-                            Manter logado
-                        </label>
-                        <a href="#" style={{ color: '#fff', textDecoration: 'underline', fontSize: '14px' }}>Esqueceu a senha?</a>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
+                        </div>
+                        <div style={{ marginBottom: '15px' }}>
+                            <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>Senha:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Digite sua senha"
+                                required
+                            />
+                        </div>
+                        <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="stayConnected"
+                                    checked={formData.stayConnected}
+                                    onChange={handleChange}
+                                />
+                                Manter logado
+                            </label>
+                            <a href="#" style={{ color: '#fff', textDecoration: 'underline', fontSize: '14px' }}>Esqueceu a senha?</a>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
