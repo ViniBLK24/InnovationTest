@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faBell } from '../components/utils.js/icons';
 
@@ -7,6 +8,7 @@ export default function Dashboard() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState(false);
+    const router = useRouter();
 
     const generateRandomPrice = () => {
         return (Math.random() * (20 - 10) + 10).toFixed(2);
@@ -17,7 +19,9 @@ export default function Dashboard() {
             try {
                 const token = localStorage.getItem('token_de_acesso');
                 if (!token) {
-                    throw new Error('Token de acesso não encontrado. Faça login novamente.');
+                    alert('Token de acesso não encontrado. Redirecionando para a página de login.');
+                    router.push('/');
+                    return;
                 }
 
                 const response = await fetch('https://apihomolog.innovationbrindes.com.br/api/innova-dinamica/produtos/listar', {
@@ -50,7 +54,7 @@ export default function Dashboard() {
         };
 
         fetchProducts();
-    }, []);
+    }, [router]);
 
     useEffect(() => {
         if (filter) {
